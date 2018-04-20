@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Setting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Auto>true</Auto>
+  <Span>30</Span>
+  <Diff>1</Diff>
+</Setting>

@@ -1,0 +1,417 @@
+
+
+
+ 
+ <?php
+	$lastNo=$this->getGameLastNo($this->type);
+	$kjHao=$this->getValue("select data from {$this->prename}data where type={$this->type} and number='{$lastNo['actionNo']}'");
+	if($kjHao) $kjHao=explode(',', $kjHao);
+	
+	$actionNo=$this->getGameNo($this->type);
+	$types=$this->getTypes();
+	$kjdTime=$types[$this->type]['data_ftime'];
+	$diffTime=strtotime($actionNo['actionTime'])-$this->time-$kjdTime;
+	$kjDiffTime=strtotime($lastNo['actionTime'])-$this->time;
+?>
+<div id="kaijiang" type="<?=$this->type?>" ctype="<?=$types[$this->type]['type']?>">
+                    <div class="game_top">
+                        <div class="gm_con">
+                            <div class="gm_con_to">
+                                <div class="gct_l">
+                                  <span class="kj-title" style="float: left;color: #999">
+                                  <em>正在销售第</em>
+                                  <span class="color-q"><?=$actionNo['actionNo']?></span>
+                                  <em>期</em>
+                                  </span><img id="voice"  class="voice-on"  title="声音开启，点击关闭" onclick="voiceKJ()" style="<!-- display:none --> position:fixed;right:-398px;">
+                                    <div class="gct_time" style="float: left;width: 170px;margin-left: 16px;">
+                                    <span style="float: left;">截止时间</span>
+                                        <div class="gct_time_now">
+                                            <div class="gct_time_now_l" action="<?=$this->basePath('Display-freshKanJiang', $this->type) ?>" id="count_down">00:00:00</div>
+                                        </div>
+                                    </div>
+                                    <div class="gct_now" style="display: none;">
+										
+										<?php
+										  $x115 = array(6,7,15,16);
+										  $ssc = array(1,3,5,12,14);
+										  if(in_array($this->type, $x115)){
+										     $ttt = 'crx'; 
+										  }else if(in_array($this->type, $ssc)){
+										     $ttt='crt';
+										  }else{
+										     $ttt=' ';
+										  }
+										?>
+                                    </div>
+                                </div>
+                                <div id="shownb-box">
+                                     <div class="transition" id="tabs_container">
+                                        <div class="make_transist hideleft showleft kj-bottom" id="nb-box1">
+                                     <div style="padding: 10px 12px;overflow: hidden;">
+                                        <div class="game-icon2 game_<?=$types[$this->type]['id']?>"></div>
+                                        <span class="wftxt"><?=$types[$this->type]['title']?></span>
+                                            <span id="lt_opentimebox" style="float: left;color: #999;margin-left: 13px;">
+                                            <span id="kjsay">
+                                            <em class="kjtips">00:00</em>
+                                            </span>
+                                            </span>
+                                        <br>
+                                        <p class="nb-box06" style="margin-left: 12px">
+                                        <em>第</em><span class="color-q last_issues" id="last_issues"><?=$lastNo['actionNo']?></span><em>期开奖号码</em>
+                                        </p>
+									 </div>
+                                       <?php if($types[$this->type]['type']==1) { //时时彩?>
+											<span class="wjkjData">
+											  <p class="hide">
+											  <span class="gr_s0000">等</span>
+											  <span class="gr_s0000">待</span>
+											  <span class="gr_s0000">开</span>
+											  <span class="gr_s0000">将</span>
+											  <span class="gr_s0000">中</span></p>
+											  <ul class="kj-hao" ctype="g1"  cnum="5">
+												  <li id="span_lot_0" class="gr_s0000"> <?=$kjHao[0]?> </li>
+												  <li id="span_lot_1" class="gr_s0000"> <?=$kjHao[1]?> </li>
+												  <li id="span_lot_2" class="gr_s0000"> <?=$kjHao[2]?> </li>
+												  <li id="span_lot_3" class="gr_s0000"> <?=$kjHao[3]?> </li>
+												  <li id="span_lot_4" class="gr_s0000"> <?=$kjHao[4]?> </li>
+											   </ul>
+											  <div class="clear"></div>
+											  </span>
+                                       <?php }else if($types[$this->type]['type']==5) { //平台自主彩种时时彩?>
+											<span class="wjkjData">
+											  <p class="hide">
+											  <span class="gr_s0000">等</span>
+											  <span class="gr_s0000">待</span>
+											  <span class="gr_s0000">开</span>
+											  <span class="gr_s0000">奖</span>
+											  <span class="gr_s0000">中</span></p>
+											  <ul class="kj-hao" ctype="g1"  cnum="5">
+												  <li id="span_lot_0" class="gr_s0000"> <?=$kjHao[0]?> </li>
+												  <li id="span_lot_1" class="gr_s0000"> <?=$kjHao[1]?> </li>
+												  <li id="span_lot_2" class="gr_s0000"> <?=$kjHao[2]?> </li>
+												  <li id="span_lot_3" class="gr_s0000"> <?=$kjHao[3]?> </li>
+												  <li id="span_lot_4" class="gr_s0000"> <?=$kjHao[4]?> </li>
+											   </ul>
+											  <div class="clear"></div>
+											  </span>	        
+                                       <?php }else if($types[$this->type]['type']==2) { //11选5?>
+											<span class="wjkjData">
+											  <p class="hide">
+											  <span class="gr_s0000">等</span>
+											  <span class="gr_s0000">待</span>
+											  <span class="gr_s0000">开</span>
+											  <span class="gr_s0000">奖</span>
+											  <span class="gr_s0000">中</span></p>
+											  <ul class="kj-hao" ctype="g1"  cnum="5">
+												  <li id="span_lot_0" class="gr_s0000"> <?=$kjHao[0]?> </li>
+												  <li id="span_lot_1" class="gr_s0000"> <?=$kjHao[1]?> </li>
+												  <li id="span_lot_2" class="gr_s0000"> <?=$kjHao[2]?> </li>
+												  <li id="span_lot_3" class="gr_s0000"> <?=$kjHao[3]?> </li>
+												  <li id="span_lot_4" class="gr_s0000"> <?=$kjHao[4]?> </li>
+											   </ul>
+											  <div class="clear"></div>
+											  </span>	                                      
+                                       <?php }else if($types[$this->type]['type']==3) { //3D 排列三?>
+											<span class="wjkjData">
+											  <p class="hide">
+											  <span class="gr_s0000">开</span>
+											  <span class="gr_s0000">奖</span>
+											  <span class="gr_s0000">中</span></p>
+											  <ul class="kj-hao" ctype="g1"  cnum="5">
+												  <li id="span_lot_0" class="gr_s0000"> <?=$kjHao[0]?> </li>
+												  <li id="span_lot_1" class="gr_s0000"> <?=$kjHao[1]?> </li>
+												  <li id="span_lot_2" class="gr_s0000"> <?=$kjHao[2]?> </li>
+											   </ul>
+											  <div class="clear"></div>
+											  </span>			
+                                       <?php }else if($types[$this->type]['type']==9) { //快三?>
+											<span class="wjkjData">
+											  <p class="hide">
+											  <span class="gr_s0000">开</span>
+											  <span class="gr_s0000">奖</span>
+											  <span class="gr_s0000">中</span></p>
+											  <ul class="kj-hao" ctype="g1"  cnum="5">
+												  <li id="span_lot_0" class="gr_s0000"> <?=$kjHao[0]?> </li>
+												  <li id="span_lot_1" class="gr_s0000"> <?=$kjHao[1]?> </li>
+												  <li id="span_lot_2" class="gr_s0000"> <?=$kjHao[2]?> </li>
+											   </ul>
+											  <div class="clear"></div>
+											  </span>		
+                                       <?php }else if($types[$this->type]['type']==4) { //快乐十分?>
+											<span class="wjkjData">
+											  <p class="hide">
+											  <span class="gr_s0000">-</span>
+											  <span class="gr_s0000">-</span>
+											  <span class="gr_s0000">等</span>
+											  <span class="gr_s0000">待</span>
+											  <span class="gr_s0000">开</span>
+											  <span class="gr_s0000">奖</span>
+											  <span class="gr_s0000">-</span>
+											  <span class="gr_s0000">-</span></p>
+											  <ul class="kj-hao" ctype="g1"  cnum="8">
+												  <li id="span_lot_0" class="gr_s0001"> <?=$kjHao[0]?> </li>
+												  <li id="span_lot_1" class="gr_s0001"> <?=$kjHao[1]?> </li>
+												  <li id="span_lot_2" class="gr_s0001"> <?=$kjHao[2]?> </li>
+												  <li id="span_lot_3" class="gr_s0001"> <?=$kjHao[3]?> </li>
+												  <li id="span_lot_4" class="gr_s0001"> <?=$kjHao[4]?> </li>
+												  <li id="span_lot_5" class="gr_s0001"> <?=$kjHao[5]?> </li>
+												  <li id="span_lot_6" class="gr_s0001"> <?=$kjHao[6]?> </li>
+												  <li id="span_lot_7" class="gr_s0001"> <?=$kjHao[7]?> </li>
+											   </ul>
+											  <div class="clear"></div>
+											  </span>
+                                       <?php }else if($types[$this->type]['type']==6) { //PK10?>
+											<span class="wjkjData">
+											  <p class="hide">
+											  <span class="gr_s0001">-</span>
+											  <span class="gr_s0001">-</span>
+											  <span class="gr_s0001">-</span>
+											  <span class="gr_s0001">等</span>
+											  <span class="gr_s0001">待</span>
+											  <span class="gr_s0001">开</span>
+											  <span class="gr_s0001">奖</span>
+											  <span class="gr_s0001">-</span>
+											  <span class="gr_s0001">-</span>
+											  <span class="gr_s0001">-</span></p>
+											  <ul class="kj-hao" ctype="g1"  cnum="10" style="padding-left: 6px">
+												  <li id="span_lot_0" class="gr_s0001"> <?=$kjHao[0]?> </li>
+												  <li id="span_lot_1" class="gr_s0001"> <?=$kjHao[1]?> </li>
+												  <li id="span_lot_2" class="gr_s0001"> <?=$kjHao[2]?> </li>
+												  <li id="span_lot_3" class="gr_s0001"> <?=$kjHao[3]?> </li>
+												  <li id="span_lot_4" class="gr_s0001"> <?=$kjHao[4]?> </li>
+												  <li id="span_lot_5" class="gr_s0001"> <?=$kjHao[5]?> </li>
+												  <li id="span_lot_6" class="gr_s0001"> <?=$kjHao[6]?> </li>
+												  <li id="span_lot_7" class="gr_s0001"> <?=$kjHao[7]?> </li>
+												  <li id="span_lot_8" class="gr_s0001"> <?=$kjHao[8]?> </li>
+												  <li id="span_lot_9" class="gr_s0001"> <?=$kjHao[9]?> </li>
+											   </ul>
+											  <div class="clear"></div>
+											  </span>
+                                       <?php } ?>
+                                        </div>
+									       <?php  $this->display('index/inc_data_history.php'); ?>
+                                     </div>
+                                </div>
+<div  class="lskj">
+                                <div class="tab_1">
+                                <div class="qxzs_1">历史开奖</div>
+<script type="text/javascript"> function zoushi(){davidInfo('该玩法号码走势正在开发中！')}</script>
+									<?php if($ttt==' '){ ?>
+										 <a  class="qxzs">号码走势</a>
+									<?php }else{ ?>
+                                         <a  class="qxzs">号码走势</a>
+									<?php }?>
+									</div>
+								</div>
+                            <div class="kjlishi" id="newls">
+                   
+				
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+<div id="andyscroll" style=';'>
+<div id="scrollmessage">
+   <ul>  
+<?php
+     $this->getSystemSettings();
+     $this->getTypes();
+	 $types=array(1,3,5,6,9,10,12,14,15,16,20,7);
+	 $name=explode('|',$this->settings['paihangsjnr']);
+	 $name2=explode('|',$this->settings['paihangsjje']);
+     $gg=$this->getRows("select * from {$this->prename}bets where zjCount=1 and bonus>? order by id desc limit 10",$this->settings['sbje']);
+     if($gg) foreach($gg as $var){
+		$gg=$this->getRows("select * from {$this->prename}bets where zjCount=1 and bonus>? order by id desc limit 10",$this->settings['sbje']);
+		switch($var['type']){
+			
+			case 1:
+		            echo '<li>恭喜会员&nbsp【<b style="color:#63B8FF">***',substr($var['username'],-3),'</b>】&nbsp重庆时时彩&nbsp ','<b style="color:#ff0000">',$var['actionNo'],'</b>&nbsp期','&nbsp喜中&nbsp<b style="color:#76EE00">',$var['bonus'],'</b>&nbsp元</li>';
+			break;
+			case 3:
+		            echo '<li>恭喜会员&nbsp【<b style="color:#63B8FF">***',substr($var['username'],-3),'</b>】&nbsp澳门时时彩&nbsp ','<b style="color:#fedcbd">',$var['actionNo'],'</b>期','&nbsp喜中&nbsp<b style="color:#6a6da9">',$var['bonus'],'</b>&nbsp元</li>';
+			break;
+			case 6:
+		            echo '<li>恭喜会员&nbsp【<b style="color:#63B8FF">***',substr($var['username'],-3),'</b>】&nbsp广东11选5&nbsp&nbsp','<b style="color:#c37e00">',$var['actionNo'],'</b>期','&nbsp喜中&nbsp<b style="color:#e6d12e">',$var['bonus'],'</b>&nbsp元</li>';
+			break;
+			case 9:
+		            echo '<li>恭喜会员&nbsp【<b style="color:#63B8FF">***',substr($var['username'],-3),'</b>】&nbsp福彩3D&nbsp','<b style="color:#e6d12e">',$var['actionNo'],'</b>期','&nbsp喜中&nbsp<b style="color:#0c212b">',$var['bonus'],'</b>&nbsp元</li>';
+			break;
+			case 10:
+		            echo '<li>恭喜会员&nbsp【<b style="color:#63B8FF">***',substr($var['username'],-3),'</b>】&nbsp排列三&nbsp','<b style="color:#a3cf62">',$var['actionNo'],'</b>期','&nbsp喜中&nbsp<b style="color:#e6d12e">',$var['bonus'],'</b>&nbsp元</li>';
+			break;
+			case 12:
+		            echo '<li>恭喜会员&nbsp【<b style="color:#63B8FF">***',substr($var['username'],-3),'</b>】&nbsp新疆时时彩&nbsp','<b style="color:#817936">',$var['actionNo'],'</b>期','&nbsp喜中&nbsp<b style="color:#2b4490">',$var['bonus'],'</b>&nbsp元</li>';
+			break;
+			case 14:
+		            echo '<li>恭喜会员&nbsp【<b style="color:#63B8FF">***',substr($var['username'],-3),'</b>】&nbsp香港时时彩&nbsp','<b style="color:#817936">',$var['actionNo'],'</b>期','&nbsp喜中&nbsp<b style="color:#2b4490">',$var['bonus'],'</b>&nbsp元</li>';
+			break;
+			case 15:
+		            echo '<li>恭喜会员&nbsp【<b style="color:#63B8FF">***',substr($var['username'],-3),'</b>】&nbsp泰国11选5&nbsp','<b style="color:#e6d12e">',$var['actionNo'],'</b>期','&nbsp喜中&nbsp<b style="color:#e6d12e">',$var['bonus'],'</b>&nbsp元</li>';
+			break;
+			case 16:
+		            echo '<li>恭喜会员&nbsp【<b style="color:#63B8FF">***',substr($var['username'],-3),'</b>】&nbsp江西11选5&nbsp','<b style="color:#705628">',$var['actionNo'],'</b>期','&nbsp喜中&nbsp<b style="color:#e6d12e">',$var['bonus'],'</b>&nbsp元</li>';
+			break;
+			case 20:
+		            echo '<li>恭喜会员&nbsp【<b style="color:#63B8FF">***',substr($var['username'],-3),'</b>】&nbsp北京pk10&nbsp&nbsp','<b style="color:#f47920">',$var['actionNo'],'</b>期','&nbsp喜中&nbsp<b style="color:#80752c">',$var['bonus'],'</b>&nbsp元</li>';
+			break;
+			case 60:
+		            echo '<li>恭喜会员&nbsp【<b style="color:#63B8FF">***',substr($var['username'],-3),'</b>】&nbsp全天快3&nbsp&nbsp','<b style="color:#f47920">',$var['actionNo'],'</b>期','&nbsp喜中&nbsp<b style="color:#80752c">',$var['bonus'],'</b>&nbsp元</li>';
+			break;
+			case 7:
+		            echo '<li>恭喜会员&nbsp【<b style="color:#63B8FF">***',substr($var['username'],-3),'</b>】&nbsp山东11选5&nbsp','<b style="color:#e6d12e">',$var['actionNo'],'</b>期','&nbsp喜中&nbsp<b style="color:#e6d12e">',$var['bonus'],'</b>&nbsp元</li>';
+			break;
+			case 5:
+		            echo '<li>恭喜会员&nbsp【<b style="color:#63B8FF">***',substr($var['username'],-3),'</b>】&nbsp河内分分彩&nbsp','<b style="color:#e6d12e">',$var['actionNo'],'</b>期','&nbsp喜中&nbsp<b style="color:#e6d12e">',$var['bonus'],'</b>&nbsp元</li>';
+			break;
+				case 26:
+		            echo '<li>恭喜会员&nbsp【<b style="color:#63B8FF">***',substr($var['username'],-3),'</b>】&nbsp河内二分彩&nbsp','<b style="color:#e6d12e">',$var['actionNo'],'</b>期','&nbsp喜中&nbsp<b style="color:#e6d12e">',$var['bonus'],'</b>&nbsp元</li>';
+			break;
+				case 30:
+		            echo '<li>恭喜会员&nbsp【<b style="color:#63B8FF">***',substr($var['username'],-3),'</b>】&nbsp吉林快3&nbsp','<b style="color:#e6d12e">',$var['actionNo'],'</b>期','&nbsp喜中&nbsp<b style="color:#e6d12e">',$var['bonus'],'</b>&nbsp元</li>';
+			break;
+				case 52:
+		            echo '<li>恭喜会员&nbsp【<b style="color:#63B8FF">***',substr($var['username'],-3),'</b>】&nbsp广西快3&nbsp','<b style="color:#e6d12e">',$var['actionNo'],'</b>期','&nbsp喜中&nbsp<b style="color:#e6d12e">',$var['bonus'],'</b>&nbsp元</li>';
+			break;
+				case 25:
+		            echo '<li>恭喜会员&nbsp【<b style="color:#63B8FF">***',substr($var['username'],-3),'</b>】&nbsp江苏快3&nbsp','<b style="color:#e6d12e">',$var['actionNo'],'</b>期','&nbsp喜中&nbsp<b style="color:#e6d12e">',$var['bonus'],'</b>&nbsp元</li>';
+			break;
+				case 18:
+		            echo '<li>恭喜会员&nbsp【<b style="color:#63B8FF">***',substr($var['username'],-3),'</b>】&nbsp重庆快乐十分&nbsp','<b style="color:#e6d12e">',$var['actionNo'],'</b>期','&nbsp喜中&nbsp<b style="color:#e6d12e">',$var['bonus'],'</b>&nbsp元</li>';
+			break;
+				case 5:
+		            echo '<li>恭喜会员&nbsp【<b style="color:#63B8FF">***',substr($var['username'],-3),'</b>】&nbsp河内分分彩&nbsp','<b style="color:#e6d12e">',$var['actionNo'],'</b>期','&nbsp喜中&nbsp<b style="color:#e6d12e">',$var['bonus'],'</b>&nbsp元</li>';
+			break;
+		}
+	}
+	?>
+  </ul>
+</div>
+</div>
+<script type="text/javascript">
+var stopscroll = false;
+var scrollElem = document.getElementById("andyscroll");
+var marqueesHeight = scrollElem.style.height;
+scrollElem.onmouseover = new Function('stopscroll = true');
+scrollElem.onmouseout  = new Function('stopscroll = false');
+var preTop = 0;
+var currentTop = 0;
+var stoptime = 0;
+var leftElem = document.getElementById("scrollmessage"); 
+scrollElem.appendChild(leftElem.cloneNode(true));
+init_srolltext();
+function init_srolltext(){
+	scrollElem.scrollTop = 0;
+	setInterval('scrollUp()', 100);//确定滚动速度的, 数值越小, 速度越快
+}
+function scrollUp(){
+	if(stopscroll) return;
+	currentTop += 2; //设为1, 可以实现间歇式的滚动; 设为2, 则是连续滚动
+	if(currentTop == 19) {
+		stoptime += 1;
+		currentTop -= 1;
+		if(stoptime == 180) {
+			currentTop = 0;
+			stoptime = 0;
+		}
+	}else{
+		preTop = scrollElem.scrollTop;
+		scrollElem.scrollTop += 1;
+		if(preTop == scrollElem.scrollTop){
+			scrollElem.scrollTop = 0;
+			scrollElem.scrollTop += 1;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                              <div class="clear"></div>
+   <div class="jrtz">
+   <div class="winning_title">今日投注</div>
+   <div class="c_z">彩种</div><div class="c_z">金额(¥)</div><div class="c_z">奖金</div><div class="c_z">状态</div><div class="c_z">操作</div>
+   </div>
+  <div class="gm_con" id="yx_table">
+     <div class="gm_con_to">
+       <div class="yx_body">
+         <div class="yx_box">
+           <div class="yxlist" >
+             <table border="0" cellpadding="0" cellspacing="0">
+			 <tbody class="projectlist" id="order-history" style="background: #fff;color: #727272"><?php $this->display('index/inc_game_order_history.php'); ?></tbody>
+             </table>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+                           </div>
+                       </div>
+</div></div>
+<script type="text/javascript">
+$(function(){
+	window.S=<?=json_encode($diffTime>0)?>;
+	window.KS=<?=json_encode($kjDiffTime>0)?>;
+	window.kjTime=parseInt(<?=json_encode($kjdTime)?>);
+	
+	if($.browser.msie){
+		setTimeout(function(){
+			gameKanJiangDataC(<?=$diffTime?>);
+		}, 1000);
+	}else{
+		setTimeout(gameKanJiangDataC, 1000, <?=$diffTime?>);
+	}
+	<?php if($kjDiffTime>0){ ?> 
+		if($.browser.msie){
+		setTimeout(function(){
+			setKJWaiting(<?=$kjDiffTime?>);
+		}, 1000);
+		}else{
+			setTimeout(setKJWaiting, 1000, <?=$kjDiffTime?>);
+		}
+	<?php } ?> 
+	<?=$this->iff($this->settings['closeVoice'], 'setVoiceStatus(false);', 'setVoiceStatus(true);')?>
+	<?php if(!$kjHao){ ?> 
+		loadKjData();
+	<?php } ?> 
+});
+</script>
+<script>
+setInterval(function() {
+    $("#newls").load(location.href+" #newls>*","");
+}, 10000000);
+$('.qxzs').on('click',function(){
+	$('.old_data').hide();
+	$('#andyscroll').show();
+})
+$('.qxzs_1').on('click',function(){
+	$('.old_data').show();
+	$('#andyscroll').hide();
+})
+	
+</script>

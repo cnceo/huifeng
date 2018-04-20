@@ -1,0 +1,11 @@
+body{font-size:12px;background:url(../images/background.png) repeat-x 0 -95px;margin:0 auto;padding:0}
+#wrap{width:950px;margin:0 auto}
+a{font-size: 12px; color: #016dc7; font-family: arial, helvetica, sans-serif; text-decoration: none}
+.mytable{background:#ddd;margin-top:60px}
+.mytable tr{background:#fff}
+.mytable tr td{height:35px;line-height:35px; vertical-align:middle;padding-left:8px}
+.logotxt{color:#fff;font-size:26px; font-family:"Î¢ÈíÑÅºÚ","ºÚÌå"; font-weight:bold}
+.banklist ul,.banklist ul li{ list-style:none;margin:0 auto;padding:0;}
+.banklist ul{margin-top:10px}
+.banklist ul li{position:relative;height:45px;line-height:45px;float:left;width:180px;overflow:hidden;}
+.banklist ul li label b{top:0;left:0;position:absolute;display:block;width:180px;height:45px;background-color:#fff;opacity:0;filter: "alpha(opacity=0)"; /* IE 8 */   filter: alpha(opacity=0);   /* IE 4-7 */   zoom: 1; }

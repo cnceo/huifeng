@@ -1,0 +1,21 @@
+此源码由盗贼源码论坛调试发布 http://bbs.daozei.net
+
+
+安装说明：
+测试环境：PHP5.2+MYSQL
+01.Win系统Node.js必须组件！根据服务器系统位数选择安装,下载地址：http://nodejs.cn/ （推荐稳定版！）
+02.Node.js安装后需要重新启动一次服务器！！！
+03.MYSQL数据恢复详见：MYSQL数据库备份目录内说明；
+04.MYSQL数据库连接参数配置文件路径：config.php 及 admin/config.admin.php （登录网站后台见第06.条）
+05.前台测试用户名：ceshi 密码：123456 二级密码：654321 （如有错误请直接到数据库查看）
+06.后台管理需要二级域名支持，如：http://amdin.域名.com 用户名：admin 密码：123456 安全码：123456
+07.开奖采集器请一直打开着,不然不能自动开奖和返奖。
+08.无法开奖或许你又会说程序不完整，这个需要配置开奖器文件夹里的config.js文件；
+搜索字段：exports.dbinfo
+得到以下信息，设置好你的MYSQL连接参数信息即可！
+exports.dbinfo={
+host:'localhost',
+user:'zye',//数据库用户名
+password:'zye.cc',//数据库密码
+database:'zye'//数据库名
+09.如发现投注失败，开奖器文件夹内有一个data.sql请用phpMyAdmin将它导入！
