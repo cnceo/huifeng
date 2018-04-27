@@ -2,9 +2,9 @@
 require_once('wjsqlin.php');
 $conf['debug']['level']=5;
 
-$conf['db']['dsn']='mysql:host=localhost;dbname=aw';
-$conf['db']['user']='root';
-$conf['db']['password']='root';
+$conf['db']['dsn']='mysql:host=localhost;dbname=testdb';
+$conf['db']['user']='domofeng';
+$conf['db']['password']='196362';
 $conf['db']['charset']='utf8';
 $conf['db']['prename']='ssc_';
 
